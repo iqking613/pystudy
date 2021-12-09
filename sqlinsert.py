@@ -4,10 +4,13 @@
 import pymysql
 import random
 import string
-conn = pymysql.connect("127.0.0.1", "root", "260820211iI", "zdemo", charset='utf8' )
+# db = pymysql.connect("127.0.0.1", "root", "260820211iI", "zdemo", charset='utf8' )
+conn = pymysql.connect(host="localhost",user="root",password="260820211iI",database="zdemo" )
+cursor = conn.cursor()
+
 sql ='insert into student (stu_id,stu_name) values (%s,%s)'
 for time in range(1,110):
-        data = [],
+        data = []
         for r in range(1,9001):
                 data.append((
                         time * 1000 + r ,
