@@ -12,30 +12,10 @@ fashion_mnist = keras.datasets.fashion_mnist
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
-a = train_images.shape
-b = len(train_labels)
-c = train_labels
-d = test_images.shape
-e = len(test_labels)
+train_images = train_images / 255.0
+test_images = test_images / 255.0
 
-# plt.figure()
-# plt.imshow(train_images[0])
-# plt.colorbar()
-# plt.grid(False)
-# plt.show()
 
-# train_images = train_images / 125.0
-# test_images = test_images / 125.0
-
-# plt.figure(figsize=(10,10))
-# for i in range(25):
-#     plt.subplot(5,5,i+1)
-#     plt.xticks([])
-#     plt.yticks([])
-#     plt.grid(False)
-#     plt.imshow(train_images[i], cmap=plt.cm.binary)
-#     plt.xlabel(class_names[train_labels[i]])
-# plt.show()
 
 #设置模型该网络的第一层 tf.keras.layers.Flatten 将图像格式从二维数组（28 x 28 像素）转换成一维数组（28 x 28 = 784 像素）。
 #将该层视为图像中未堆叠的像素行并将其排列起来。该层没有要学习的参数，它只会重新格式化数据。
@@ -55,7 +35,7 @@ model.compile(optimizer='adam',
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
 
 #向模型发送数据 epoches表示学习多少个
-model.fit(train_images, train_labels, epochs=20)
+model.fit(train_images, train_labels, epochs=6000)
 modelpath = r'D:\vscode\pystudy\tensorflow\trmodel.h5'
 model.save(modelpath)
 
